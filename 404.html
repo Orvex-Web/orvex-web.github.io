@@ -1,1 +1,77 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/error.css">
+</head>
+<body>
+    <div class="space-bg">
+        <div class="stars" id="stars"></div>
+        <div class="meteor" style="top: 10%; animation-delay: 0s;"></div>
+        <div class="meteor" style="top: 30%; animation-delay: 2s;"></div>
+        <div class="meteor" style="top: 50%; animation-delay: 4s;"></div>
+        <div class="meteor" style="top: 70%; animation-delay: 6s;"></div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="logo">ORVEX</div>
+            <div class="rocket-container">
+                <div class="rocket" id="rocket">
+                    <svg viewBox="0 0 120 120" fill="none">
+                        <ellipse cx="60" cy="60" rx="12" ry="35" fill="url(#rocketGradient)"/>
+                        <path d="M60 15 L72 45 L60 40 L48 45 Z" fill="url(#tipGradient)"/>
+                        <circle cx="55" cy="45" r="3" fill="#87CEEB" opacity="0.8"/>
+                        <circle cx="65" cy="45" r="3" fill="#87CEEB" opacity="0.8"/>
+                        <circle cx="60" cy="55" r="4" fill="#87CEEB" opacity="0.6"/>
+                        <path d="M48 80 L60 95 L52 85 Z" fill="url(#finGradient)"/>
+                        <path d="M72 80 L60 95 L68 85 Z" fill="url(#finGradient)"/>
+                        <rect x="56" y="65" width="8" height="3" rx="1" fill="#00BFFF" opacity="0.8"/>
+                        <rect x="56" y="70" width="8" height="2" rx="1" fill="#00BFFF" opacity="0.6"/>
+                        <defs>
+                            <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E6E6FA"/>
+                                <stop offset="50%" style="stop-color:#B0C4DE"/>
+                                <stop offset="100%" style="stop-color:#87CEEB"/>
+                            </linearGradient>
+                            <linearGradient id="tipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF6B35"/>
+                                <stop offset="100%" style="stop-color:#FF8E35"/>
+                            </linearGradient>
+                            <linearGradient id="finGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00BFFF"/>
+                                <stop offset="100%" style="stop-color:#0077FF"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="rocket-flame"></div>
+                </div>
+            </div>
+            <div class="error-code">404</div>
+            <h1 class="title">Página no encontrada</h1>
+            <p class="description">
+                Houston, tenemos un problema. Esta página se perdió en el vasto cosmos digital. 
+                ¡Pero no te preocupes! Nuestro cohete te llevará de vuelta a casa.
+            </p>
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="launchRocket()" id="homeBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    Volver a Casa
+                </button>
+                <button class="btn btn-primary" onclick="showMission()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Misión de Rescate
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="page-transition" id="pageTransition"></div>
+<script src="/resources/js/error.js"></script>
+</body>
+</html>
