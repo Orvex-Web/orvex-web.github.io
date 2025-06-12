@@ -35,7 +35,7 @@
                 pageTransition.classList.add('active');
                 
                 setTimeout(() => {
-                    window.location.replace('/index.html'); 
+                    window.location.replace('/');
                 }, 1000);
             }, 1500);
         }
