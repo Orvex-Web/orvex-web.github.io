@@ -15,31 +15,30 @@
             }
         }
 
-         function launchRocket() {
-    const rocket = document.getElementById('rocket');
-    const homeBtn = document.getElementById('homeBtn');
-    const pageTransition = document.getElementById('pageTransition');
-
-    homeBtn.disabled = true;
-    homeBtn.style.opacity = '0.5';
-
-    if (navigator.vibrate) {
-        navigator.vibrate([100, 50, 100, 50, 200]);
-    }
-
-    rocket.classList.add('rocket-launch');
-    createRocketTrail();
-
-    setTimeout(() => {
-        pageTransition.classList.add('active');
-
-        setTimeout(() => {
+        function launchRocket() {
+            const rocket = document.getElementById('rocket');
+            const homeBtn = document.getElementById('homeBtn');
+            const pageTransition = document.getElementById('pageTransition');
             
-            sessionStorage.setItem('redirectedHome', 'true');
-            window.location.replace('/');
-        }, 1000);
-    }, 1500);
-}
+            homeBtn.disabled = true;
+            homeBtn.style.opacity = '0.5';
+            
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100, 50, 200]);
+            }
+            
+            rocket.classList.add('rocket-launch');
+            
+            createRocketTrail();
+            
+            setTimeout(() => {
+                pageTransition.classList.add('active');
+                
+                setTimeout(() => {
+                    window.history.back();
+                }, 1000);
+            }, 1500);
+        }
 
         function createRocketTrail() {
             const rocket = document.getElementById('rocket');
