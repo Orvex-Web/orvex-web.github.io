@@ -12,7 +12,7 @@ El sitio web está disponible para que cualquier persona pueda navegar, leer y u
 
 ## Uso de los servicios
 
-Los servicios disponibles en el sitio web oficial de Orvex — como los chatbots, herramientas de Inteligencia Artificial, y cualquier otra funcionalidad en línea—  están abiertos para que todos los usuarios los utilicen libremente mientras navegan en la plataforma.
+Los servicios disponibles en el sitio web oficial de Orvex — como los chatbots, herramientas de Inteligencia Artificial, y cualquier otra funcionalidad en línea — están abiertos para que todos los usuarios los utilicen libremente mientras navegan en la plataforma.
 
 Sin embargo, el código fuente, imágenes, diseños, documentación y cualquier otro recurso que conforma el proyecto **no pueden ser copiados, modificados, distribuidos ni reutilizados fuera de esta página web sin autorización expresa**.
 
