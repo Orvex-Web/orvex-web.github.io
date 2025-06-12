@@ -35,7 +35,7 @@
                 pageTransition.classList.add('active');
                 
                 setTimeout(() => {
-                    window.location.href = '/';
+                    window.history.back();
                 }, 1000);
             }, 1500);
         }
