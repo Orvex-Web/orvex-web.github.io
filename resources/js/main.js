@@ -152,7 +152,6 @@
             });
         }
 
-        // Enhanced error handling
         window.addEventListener('error', (e) => {
             console.error('JavaScript error:', e.error);
         });
