@@ -10,30 +10,12 @@ El sitio web está disponible para que cualquier persona pueda navegar, leer y u
 
 ---
 
-## Restricciones de uso
+## Derechos de autor y uso del contenido
 
-**Todo el contenido de este repositorio, incluyendo pero no limitado a:**
+El contenido de este repositorio —incluyendo código fuente, imágenes, diseño y otros recursos digitales— está protegido legalmente.  
+No está permitido copiar, modificar ni reutilizar ninguna parte del proyecto.
 
-- Código fuente  
-- Imágenes  
-- Íconos  
-- Diseño gráfico  
-- Documentación  
-- Cualquier otro recurso digital
-
-está protegido por derechos de autor y queda estrictamente prohibida su copia, modificación, distribución o cualquier tipo de uso no autorizado.
-
----
-
-## Sin permisos ni excepciones
-
-No se otorgan licencias, permisos ni autorizaciones para utilizar, reproducir o distribuir cualquier parte del código o recursos aquí presentes.
-
----
-
-## Respeto al trabajo creativo
-
-Al utilizar el sitio web, aceptas estas condiciones y respetas el esfuerzo y propiedad intelectual de **Orvex**.
+Consulta el archivo [LICENSE](./LICENSE) para leer los términos completos.
 
 ---
 
