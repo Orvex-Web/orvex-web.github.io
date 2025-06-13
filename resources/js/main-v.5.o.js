@@ -1,5 +1,5 @@
 const BOT_CONFIG = {
-    name: "Sync AI",
+    name: "Cyron AI",
     version: "2.0",
     typingSpeed: 35,
     responseDelay: 800,
@@ -645,7 +645,7 @@ if (document.readyState === 'loading') {
 }
 
 window.addEventListener('error', (e) => {
-    console.error('Error en Sync AI:', e.error);
+    console.error('Error en Cyron AI:', e.error);
     addMessage('Disculpa, he experimentado un error técnico. Por favor, intenta nuevamente.', false, false, true);
 });
 
