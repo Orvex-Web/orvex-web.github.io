@@ -2,10 +2,10 @@ const MathModule = {
 
     extractMathFromText: function(text) {
         const mathQuestionPatterns = [
-            /(?:cuanto|cuánto|que|qué)\s+es\s+([0-9\+\-\*\/\.\(\)\s\^%!]+)/i,
-            /(?:calcula|resolver?|suma|resta|multiplica|divide)\s*([0-9\+\-\*\/\.\(\)\s\^%!]+)/i,
-            /([0-9\+\-\*\/\.\(\)\s\^%!]+)\s*(?:\?|\¿)/,
-            /^([0-9\+\-\*\/\.\(\)\s\^%!]+)$/
+            /(?:cuanto|cuánto|que|qué)\s+es\s+([0-9\+\-\*\/\.\(\)\s\^%!\,\×]+)/i,
+            /(?:calcula|resolver?|suma|resta|multiplica|divide)\s*([0-9\+\-\*\/\.\(\)\s\^%!\,\×]+)/i,
+            /([0-9\+\-\*\/\.\(\)\s\^%!\,\×]+)\s*(?:\?|\¿)/,
+            /^([0-9\+\-\*\/\.\(\)\s\^%!\,\×]+)$/
         ];
         
         for (let pattern of mathQuestionPatterns) {
@@ -39,10 +39,10 @@ const MathModule = {
             if (!hasMathCore) return false;
             
             const validOperatorPatterns = [
-                /\d\s*[\+\-\*\/\^%!]/,     
-                /[\+\-\*\/\^%!]\s*\d/,     
-                /[\+\-\*\/\^%!]\s*[\(\w]/, 
-                /\)\s*[\+\-\*\/\^%!]/      
+                /\d\s*[\+\-\*\/\^%!×÷]/,     
+                /[\+\-\*\/\^%!×÷]\s*\d/,     
+                /[\+\-\*\/\^%!×÷]\s*[\(\w]/, 
+                /\)\s*[\+\-\*\/\^%!×÷]/      
             ];
             
             const hasValidOperators = validOperatorPatterns.some(pattern => pattern.test(cleanExpr));
@@ -56,9 +56,7 @@ const MathModule = {
                     if (char === ')') count--;
                     if (count < 0) return false;
                 }
-                if (count !== 0) return false;
-                
-                return /\([\d\w\+\-\*\/]/.test(cleanExpr);
+                return count === 0;
             })();
             
             const isSimpleNumber = /^[-+]?\d*\.?\d+$/.test(cleanExpr);
@@ -71,10 +69,10 @@ const MathModule = {
         }
         
         const directMathPatterns = [
-            /\d+\s*[\+\-\*\/\^%]\s*\d+/,   
+            /\d+\s*[\+\-\*\/\^%×÷]\s*\d+/,   
             /(sin|cos|tan|log|ln|sqrt)\([^)]+\)/i, 
-            /[\+\-\*\/\^%]\s*\d/,          
-            /\d\s*[\+\-\*\/\^%!]/,         
+            /[\+\-\*\/\^%×÷]\s*\d/,          
+            /\d\s*[\+\-\*\/\^%!×÷]/,         
             /\(\s*[-+]?\d*\.?\d+\s*\)/      
         ];
         
@@ -91,6 +89,11 @@ const MathModule = {
                 expression = expression.replace(/(?:cuanto|cuánto|que|qué)\s+es\s+/gi, '');
                 expression = expression.replace(/(?:calcula|resolver?|suma|resta|multiplica|divide)\s*/gi, '');
             }
+            
+            // Eliminar comas de separadores de miles y convertir símbolos
+            expression = expression
+                .replace(/(\d),(\d)/g, '$1$2')  // Elimina comas entre dígitos
+                .replace(/×/g, '*');             // Convertir × a *
             
             let cleanExpr = expression
                 .replace(/\s+/g, '')
@@ -186,6 +189,7 @@ formatMathResult: function(calculation) {
         
         return successResponses[Math.floor(Math.random() * successResponses.length)];
     } else {
+        // Respuestas variadas para errores
         const errorResponses = [
     `❌ ${calculation.error}`,
     `🚫 Oops, algo no está bien ${calculation.error}`,
