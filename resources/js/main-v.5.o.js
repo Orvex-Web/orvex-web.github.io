@@ -299,14 +299,6 @@ function addMessage(content, isUser = false, isCensored = false, isError = false
 
     const wrapperDiv = document.createElement('div');
     wrapperDiv.className = 'message-wrapper';
-
-    if (isUser) {
-        const avatarDiv = document.createElement('div');
-        avatarDiv.className = 'user-avatar';
-        const profile = userProfile.getProfile();
-        avatarDiv.innerHTML = `<img src="${profile.avatar}" alt="${profile.name}" onerror="this.src='${PROFILE_CONFIG.defaultAvatar}'">`;
-        wrapperDiv.appendChild(avatarDiv);
-    }
     
     const bubbleDiv = document.createElement('div');
     bubbleDiv.className = `message-bubble ${isCensored ? 'censored-message' : ''} ${isError ? 'error-message' : ''}`;
