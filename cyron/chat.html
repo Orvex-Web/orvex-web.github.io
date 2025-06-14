@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyron AI - Asistente Virtual Profesional</title>
+    <link rel="stylesheet" href="/resources/css/style-v.5.o.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+        <div class="bot-avatar">
+            <img src="https://cdn-bytesdex.github.io/resources/multimedia/imagen/bot.jpg" alt="Bot" />
+        </div>
+        <div class="bot-info">
+            <div class="bot-name">Cyron</div>
+            <div class="bot-status">Con T-X5.o</div>
+        </div>
+        <div class="profile-menu-container">
+            <button class="profile-menu-button" id="profileMenuButton" aria-label="Menú de perfil">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <circle cx="12" cy="1" r="1"></circle>
+                    <circle cx="12" cy="23" r="1"></circle>
+                    <circle cx="4.22" cy="4.22" r="1"></circle>
+                    <circle cx="19.78" cy="19.78" r="1"></circle>
+                    <circle cx="1" cy="12" r="1"></circle>
+                    <circle cx="23" cy="12" r="1"></circle>
+                    <circle cx="4.22" cy="19.78" r="1"></circle>
+                    <circle cx="19.78" cy="4.22" r="1"></circle>
+                </svg>
+            </button>
+            
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="profile-header">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar" id="profileAvatarDisplay">
+                            <span id="profileInitials">U</span>
+                            <img id="profileImage" src="" alt="Foto de perfil" style="display: none;">
+                        </div>
+                        <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+                        <button class="change-avatar-btn" id="changeAvatarBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="profileDisplayName">Usuario</h3>
+                        <p id="profileDisplayCountry">País no seleccionado</p>
+                    </div>
+                </div>
+                
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="usernameInput">Nombre:</label>
+                        <input type="text" id="usernameInput" placeholder="Ingresa tu nombre" maxlength="20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="countrySelect">País:</label>
+                        <select id="countrySelect">
+                            <option value="">Selecciona tu país</option>
+                            <option value="Argentina">🇦🇷 Argentina</option>
+                            <option value="Bolivia">🇧🇴 Bolivia</option>
+                            <option value="Brasil">🇧🇷 Brasil</option>
+                            <option value="Chile">🇨🇱 Chile</option>
+                            <option value="Colombia">🇨🇴 Colombia</option>
+                            <option value="Costa Rica">🇨🇷 Costa Rica</option>
+                            <option value="Cuba">🇨🇺 Cuba</option>
+                            <option value="Ecuador">🇪🇨 Ecuador</option>
+                            <option value="El Salvador">🇸🇻 El Salvador</option>
+                            <option value="España">🇪🇸 España</option>
+                            <option value="Guatemala">🇬🇹 Guatemala</option>
+                            <option value="Honduras">🇭🇳 Honduras</option>
+                            <option value="México">🇲🇽 México</option>
+                            <option value="Nicaragua">🇳🇮 Nicaragua</option>
+                            <option value="Panamá">🇵🇦 Panamá</option>
+                            <option value="Paraguay">🇵🇾 Paraguay</option>
+                            <option value="Perú">🇵🇪 Perú</option>
+                            <option value="Puerto Rico">🇵🇷 Puerto Rico</option>
+                            <option value="República Dominicana">🇩🇴 República Dominicana</option>
+                            <option value="Uruguay">🇺🇾 Uruguay</option>
+                            <option value="Venezuela">🇻🇪 Venezuela</option>
+                            <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+                            <option value="Canadá">🇨🇦 Canadá</option>
+                        </select>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="save-profile-btn" id="saveProfileBtn">Guardar</button>
+                        <button class="clear-profile-btn" id="clearProfileBtn">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+<div class="chat-messages" id="chatMessages">
+</div>
+    
+    <div class="typing-container" id="typingContainer">
+      
+        <div class="typing-indicator">
+            <div class="typing-avatar">
+                <img src="https://cdn-bytesdex.github.io/resources/multimedia/imagen/bot.jpg" alt="Bot" />
+            </div>
+            <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+    </div>
+        <div id="suggestions" class="suggestions-container">
+</div>
+    <div class="chat-input-container">
+        <div class="chat-input-wrapper">
+            <div class="input-group">
+                <textarea 
+                    id="chatInput" 
+                    class="chat-input" 
+                    placeholder="Escribe tu mensaje aquí..." 
+                    rows="1"
+                    maxlength="1000"
+                ></textarea>
+            </div>
+            <button class="send-button" onclick="clearChat();">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+            <path d="M9.533 11.15A1.82 1.82 0 0 0 9 12.438V15h2.578c.483 0 .947-.192 1.289-.534l7.6-7.604a1.82 1.82 0 0 0 0-2.577l-.751-.751a1.82 1.82 0 0 0-2.578 0z" />
+            <path d="M21 12c0 4.243 0 6.364-1.318 7.682S16.242 21 12 21s-6.364 0-7.682-1.318S3 16.242 3 12s0-6.364 1.318-7.682S7.758 3 12 3" />
+        </g>
+    </svg>
+</button>
+            <button id="sendButton" class="send-button" aria-label="Enviar mensaje">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19.5v-15m0 0l-6 5.625M12 4.5l6 5.625" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+    <script src="/resources/js/main-v.5.o.js"></script>
+    <script src="/resources/js/model-v.5.o.js"></script>
+    <script src="/resources/js/math-v.5.o.js"></script>
+</body>
+</html>
