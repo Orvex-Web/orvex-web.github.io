@@ -1,15 +1,12 @@
 (async () => {
-    
-    const clientName = "CLIENTE ORVEX 001";
+    const currentDomain = window.location.hostname;
 
     try {
-        
-        const config = await import("./config-wm.js");
-        
-        const client = config.clientScripts.find(c => c.name === clientName);
+        const config = await import("config-wm.js");
+        const client = config.clientScripts.find(c => c.domain === currentDomain);
 
         if (!client) {
-            console.warn(`No se encontró configuración para: ${clientName}`);
+            console.warn(`❌ Dominio no autorizado para marca de agua: ${currentDomain}`);
             return;
         }
 
@@ -17,7 +14,7 @@
 
         if (clientModule.watermarkEnabled) {
             const watermark = document.createElement("div");
-            watermark.innerText = clientModule.watermarkText || "Marca de Agua ORVEX";
+            watermark.innerText = clientModule.watermarkText || "Marca de Agua ORVEX™";
             Object.assign(watermark.style, {
                 position: "fixed",
                 bottom: "10px",
@@ -34,6 +31,6 @@
             document.body.appendChild(watermark);
         }
     } catch (error) {
-        console.error("Error cargando la configuración de marca de agua:", error);
+        console.error("❌ Error al cargar marca de agua:", error);
     }
 })();
