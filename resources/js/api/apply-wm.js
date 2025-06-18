@@ -16,7 +16,7 @@
         
         if (clientModule.watermarkEnabled) {
             const watermark = document.createElement("div");
-            watermark.innerText = clientModule.watermarkText || "Este sitio no tiene licencia";
+            watermark.innerText = clientModule.watermarkText || "Marca de agua";
 
             Object.assign(watermark.style, {
                 position: "fixed",
