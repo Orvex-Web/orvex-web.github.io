@@ -21,7 +21,7 @@
             Object.assign(watermark.style, {
                 position: "fixed",
                 top: "12px",
-                left: "12px", // Podés cambiarlo a right si querés
+                left: "12px", 
                 background: "rgba(0, 0, 0, 0.06)",
                 color: "#222",
                 padding: "6px 12px",
