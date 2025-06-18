@@ -1,8 +1,10 @@
 (async () => {
-    const currentDomain = window.location.hostname;
+    const currentDomain = window.location.hostname; 
 
     try {
+         
         const config = await import("https://orvex-web.github.io/resources/js/api/config-wm.js");
+
         const client = config.clientScripts.find(c => c.domain === currentDomain);
 
         if (!client) {
@@ -11,17 +13,15 @@
         }
 
         const clientModule = await import(client.script);
-
+        
         if (clientModule.watermarkEnabled) {
             const watermark = document.createElement("div");
-
-            watermark.innerText =
-                clientModule.watermarkText || "Este sitio no tiene una licencia activa de ORVEX™";
+            watermark.innerText = clientModule.watermarkText || "Este sitio no tiene licencia";
 
             Object.assign(watermark.style, {
                 position: "fixed",
                 top: "12px",
-                left: "12px", 
+                left: "12px",
                 background: "rgba(0, 0, 0, 0.06)",
                 color: "#222",
                 padding: "6px 12px",
