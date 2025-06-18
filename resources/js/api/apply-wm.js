@@ -2,7 +2,7 @@
     const currentDomain = window.location.hostname;
 
     try {
-        const config = await import("config-wm.js");
+        const config = await import("https://orvex-web.github.io/resources/js/api/config-wm.js");
         const client = config.clientScripts.find(c => c.domain === currentDomain);
 
         if (!client) {
