@@ -4,7 +4,7 @@
 
     try {
         
-        const config = await import("https://te-amo-dilcy.github.io/config-wm.js");
+        const config = await import("./config-wm.js");
         
         const client = config.clientScripts.find(c => c.name === clientName);
 
