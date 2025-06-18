@@ -1,6 +1,6 @@
 export const clientScripts = [
     {
-        domain: "te-amo-dilcy.github.io",
-        script: "zw0x7.js"
+        domain: "te-amo-dilcy.github.io", 
+        script: "https://orvex-web.github.io/resources/js/api/zw0x7.js"
     }
 ];
