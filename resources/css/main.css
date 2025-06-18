@@ -297,7 +297,7 @@
         }
 
         .menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-6px, -6px);
+            transform: rotate(45.5deg) translate(-6.7px, -6.7px);
         }
 
         .main {
