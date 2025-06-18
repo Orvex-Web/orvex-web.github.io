@@ -14,20 +14,30 @@
 
         if (clientModule.watermarkEnabled) {
             const watermark = document.createElement("div");
-            watermark.innerText = clientModule.watermarkText || "Marca de Agua ORVEX™";
+
+            watermark.innerText =
+                clientModule.watermarkText || "Este sitio no tiene una licencia activa de ORVEX™";
+
             Object.assign(watermark.style, {
                 position: "fixed",
-                bottom: "10px",
-                right: "10px",
-                opacity: "0.3",
+                top: "12px",
+                left: "12px", // Podés cambiarlo a right si querés
+                background: "rgba(0, 0, 0, 0.06)",
+                color: "#222",
+                padding: "6px 12px",
+                borderRadius: "8px",
                 fontSize: "14px",
-                color: "#000",
+                fontFamily: "Segoe UI, sans-serif",
+                fontWeight: "600",
+                boxShadow: "0 0 4px rgba(0,0,0,0.1)",
                 zIndex: "9999",
+                opacity: "0.7",
                 pointerEvents: "none",
-                fontFamily: "sans-serif",
-                transform: "rotate(-20deg)",
-                fontWeight: "bold"
+                userSelect: "none",
+                backdropFilter: "blur(1.5px)",
+                transition: "opacity 0.4s ease-in-out"
             });
+
             document.body.appendChild(watermark);
         }
     } catch (error) {
