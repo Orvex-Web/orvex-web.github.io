@@ -652,3 +652,213 @@ window.SyncAI = {
         responseModule: typeof getResponses === 'function'
     })
 };
+
+(function () {
+  let botActivo = false;
+  let loaderActive = false;
+  const loaderShown = localStorage.getItem('cyronLoaderShown');
+  if (botActivo && loaderShown) {
+    const loader = document.getElementById('cyronAiLoader');
+    if (loader) loader.classList.add('cyron-hide');
+    return;
+  }
+
+  const normalMessagesCols = [
+    [
+      "Inicializando núcleo inteligente",
+      "Sincronizando arquitectura de datos",
+      "Actualización del motor aplicada",
+      "Validando sistema cognitivo",
+      "Sistema operativo en línea"
+    ],
+    [
+      "Cargando memoria RAM virtual",
+      "Red neuronal activa",
+      "Importando librerías internas",
+      "Configuración establecida",
+      "Cyron listo para operar"
+    ],
+    [
+      "Interfaz de comandos activada",
+      "Revisión de módulos completada",
+      "Entradas analizadas correctamente",
+      "Canal de voz sincronizado",
+      "Módulos de soporte listos"
+    ],
+    [
+      "Aplicando políticas de seguridad",
+      "Comprobando credenciales internas",
+      "Kernel actualizado",
+      "Sistema de lógica cargado",
+      "Listo para procesar solicitudes"
+    ],
+    [
+      "Validando integridad de código",
+      "Optimizando subprocesos cognitivos",
+      "Protocolos conectados",
+      "Actualización de entorno realizada",
+      "Cyron preparado para ayudarte"
+    ]
+  ];
+
+  const errorMessagesCols = [
+    [
+      "Fallo crítico en subsistema",
+      "Módulo desconectado inesperadamente",
+      "No puedo acceder al núcleo",
+      "Modo de diagnóstico iniciado",
+      "Reintenta más tarde"
+    ],
+    [
+      "Error de autenticación interna",
+      "Estoy temporalmente inactivo",
+      "Memoria de procesos no disponible",
+      "Interfaz dañada",
+      "Intentaré recuperarme pronto"
+    ],
+    [
+      "Comando fallido al iniciar",
+      "Conexión de red perdida",
+      "Base de datos no accesible",
+      "Control de voz desactivado",
+      "Regresa en unos minutos"
+    ],
+    [
+      "Kernel bloqueado por seguridad",
+      "Reinicio forzado cancelado",
+      "Imposible continuar operación",
+      "Estado crítico persistente",
+      "Por favor, vuelve más tarde"
+    ],
+    [
+      "Actualización incompleta",
+      "Desactivado por administrador",
+      "Error general en el sistema",
+      "Respaldo no disponible",
+      "Intenta nuevamente más adelante"
+    ]
+  ];
+
+  let currentProgress = 0;
+  let messageIndex = 0;
+  let typingInterval;
+  let progressInterval;
+  let messageTimeout;
+  let selectedMessages = [];
+  const typingSpeed = 40;
+  const pauseBetweenMessages = 600;
+
+  function getRandomColumn(messagesCols) {
+    const col = Math.floor(Math.random() * messagesCols.length);
+    return messagesCols[col];
+  }
+
+  function initLoader() {
+    if (loaderActive) return;
+    loaderActive = true;
+    currentProgress = 0;
+    messageIndex = 0;
+
+    const loader = document.getElementById('cyronAiLoader');
+    const progressBar = document.getElementById('cyronProgressBar');
+    const progressPercentage = document.getElementById('cyronProgressPercentage');
+    const aiIcon = document.getElementById('cyronAiIcon');
+    const messageText = document.getElementById('cyronMessageText');
+    const cursor = document.getElementById('cyronCursor');
+
+    if (loader && progressBar && progressPercentage && aiIcon && messageText && cursor) {
+      loader.classList.remove('cyron-hide');
+      progressBar.style.width = '0%';
+      progressPercentage.textContent = '0%';
+      aiIcon.classList.remove('cyron-error-animation');
+      progressBar.classList.remove('cyron-error');
+
+      if (botActivo) {
+        selectedMessages = getRandomColumn(normalMessagesCols);
+        const estimatedTime = calculateTypingTime(selectedMessages);
+        startProgressAnimation(estimatedTime);
+        startMessageTyping(() => {
+          localStorage.setItem('cyronLoaderShown', 'true');
+          finishLoading();
+        });
+      } else {
+        selectedMessages = getRandomColumn(errorMessagesCols);
+        aiIcon.classList.add('cyron-error-animation');
+        progressBar.classList.add('cyron-error');
+        startMessageTyping(() => {});
+      }
+    }
+  }
+
+  function calculateTypingTime(messages) {
+    let totalChars = 0;
+    messages.forEach(msg => totalChars += msg.length);
+    const timeForTyping = totalChars * typingSpeed;
+    const totalPauses = (messages.length - 1) * pauseBetweenMessages;
+    return timeForTyping + totalPauses;
+  }
+
+  function startProgressAnimation(duration) {
+    const progressBar = document.getElementById('cyronProgressBar');
+    const progressPercentage = document.getElementById('cyronProgressPercentage');
+    const updateInterval = 50;
+    const totalUpdates = duration / updateInterval;
+    const incrementPerUpdate = 100 / totalUpdates;
+
+    progressInterval = setInterval(() => {
+      currentProgress += incrementPerUpdate;
+      if (currentProgress >= 100) {
+        currentProgress = 100;
+        clearInterval(progressInterval);
+      }
+      progressBar.style.width = currentProgress + '%';
+      progressPercentage.textContent = Math.floor(currentProgress) + '%';
+    }, updateInterval);
+  }
+
+  function startMessageTyping(onComplete) {
+    const messageText = document.getElementById('cyronMessageText');
+    const cursor = document.getElementById('cyronCursor');
+    if (messageIndex >= selectedMessages.length) {
+      cursor.style.display = 'none';
+      onComplete();
+      return;
+    }
+    const message = selectedMessages[messageIndex];
+    messageText.textContent = '';
+    cursor.style.display = 'inline-block';
+    let charIndex = 0;
+
+    typingInterval = setInterval(() => {
+      if (charIndex < message.length) {
+        messageText.textContent += message[charIndex];
+        charIndex++;
+      } else {
+        clearInterval(typingInterval);
+        messageTimeout = setTimeout(() => {
+          messageIndex++;
+          startMessageTyping(onComplete);
+        }, pauseBetweenMessages);
+      }
+    }, typingSpeed);
+  }
+
+  function finishLoading() {
+    clearInterval(progressInterval);
+    clearInterval(typingInterval);
+    clearTimeout(messageTimeout);
+    const loader = document.getElementById('cyronAiLoader');
+    if (botActivo) {
+      loader.classList.add('cyron-hide');
+      loaderActive = false;
+    }
+  }
+
+  window.addEventListener('load', () => {
+    initLoader();
+  });
+
+  if (document.readyState === 'complete') {
+    initLoader();
+  }
+})();
