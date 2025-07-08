@@ -654,7 +654,7 @@ window.SyncAI = {
 };
 
 (function () {
-  let botActivo = false;
+  let botActivo = true;
   let loaderActive = false;
   const loaderShown = localStorage.getItem('cyronLoaderShown');
   if (botActivo && loaderShown) {
