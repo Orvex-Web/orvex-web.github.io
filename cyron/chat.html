@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyron AI - Asistente Virtual Profesional</title>
-    <link rel="stylesheet" href="/resources/css/style-v.5.o.css">
+    <title>Sync AI - Asistente Virtual Profesional</title>
+    <link rel="stylesheet" href="style-v.5.o.css">
 </head>
 <body>
   <div class="chat-container">
@@ -142,8 +142,27 @@
         </div>
     </div>
 </div>
-    <script src="/resources/js/main-v.5.o.js"></script>
-    <script src="/resources/js/model-v.5.o.js"></script>
-    <script src="/resources/js/math-v.5.o.js"></script>
+<div class="cyron-ai-loader" id="cyronAiLoader">
+  <div class="cyron-loader-container">
+    <div class="cyron-ai-icon" id="cyronAiIcon">
+      <img src="https://cdn-bytesdex.github.io/resources/multimedia/imagen/bot.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+    </div>
+    <h1 class="cyron-main-title">CYRON</h1>
+    <div class="cyron-message-container">
+      <div class="cyron-main-text" id="cyronLoadingMessage">
+        <span id="cyronMessageText"></span>
+        <span class="cyron-typing-cursor" id="cyronCursor"></span>
+      </div>
+    </div>
+    <p class="cyron-main-text">No cerrar. Cargando módulos</p>
+    <div class="cyron-progress-container">
+      <div class="cyron-progress-bar" id="cyronProgressBar"></div>
+    </div>
+    <div class="cyron-progress-percentage" id="cyronProgressPercentage">0%</div>
+  </div>
+</div>
+    <script src="main-v.5.o.js"></script>
+    <script src="model-v.5.o.js"></script>
+    <script src="math-v.5.o.js"></script>
 </body>
 </html>
