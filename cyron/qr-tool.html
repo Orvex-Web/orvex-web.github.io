@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>QR Scanner & Generator Pro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <link rel="stylesheet" href="/resources/css/scanner.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header pulse">
+ <div class="cyron-profile">
+  <img src="https://orvex-web.github.io/resources/multimedia/image/cyron-orvex.gif" alt="Cyron IA" class="cyron-avatar">
+  <div class="cyron-info">
+    <strong>Cyron</strong><br>
+    <span id="cyron-typing" class="cyron-typing"></span>
+  </div>
+</div>
+</header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="scanner">
+        <i class="fas fa-camera"></i> Escanear
+      </button>
+      <button class="tab-btn" data-tab="generator">
+        <i class="fas fa-qrcode"></i> Generar
+      </button>
+    </div>
+
+    <div id="scanner" class="tab-content active">
+      <div class="scanner-section">
+        <div class="scanner-options">
+          <div class="option-card" id="upload-option">
+            <i class="fas fa-image"></i>
+            <div>
+              <h3>Subir Imagen</h3>
+              <p>
+                Desde tu galería
+              </p>
+            </div>
+          </div>
+
+          <div class="option-card" id="camera-option">
+            <i class="fas fa-camera"></i>
+            <div>
+              <h3>Usar Cámara</h3>
+              <p>
+                Escanear en tiempo real
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <input type="file" id="file-input" accept="image/*">
+
+        <div class="preview-container">
+          <img id="image-preview" alt="Vista previa">
+          <video id="camera-preview" autoplay playsinline></video>
+
+          <div class="scan-overlay">
+            <div class="scan-animation">
+              <div class="scan-frame"></div>
+              <div class="scan-line"></div>
+              <div class="scan-dots"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scan-result">
+          <h3><i class="fas fa-check-circle"></i> Resultado</h3>
+          <div class="result-content" id="scan-result"></div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="reset-btn" class="action-btn hidden">
+            <i class="fas fa-redo"></i> Reiniciar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="generator" class="tab-content">
+      <div class="generator-section">
+        <div class="input-group">
+          <input type="text" id="qr-input" placeholder="Introduce texto o URL aquí...">
+        </div>
+
+        <button id="generate-btn" class="btn">
+          <i class="fas fa-bolt"></i> Generar Código QR
+        </button>
+
+        <div class="qr-result-container">
+          <div class="qr-display">
+            <canvas id="qr-code"></canvas>
+          </div>
+
+          <button id="download-btn" class="btn download-btn">
+            <i class="fas fa-download"></i> Descargar QR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="crop-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Recortar Imagen</h3>
+        <button class="close-btn" id="close-modal">&times;</button>
+      </div>
+      <div class="crop-container">
+        <img id="crop-image" alt="Imagen a recortar">
+      </div>
+      <div class="modal-footer">
+        <button class="confirm-crop" id="crop-btn">Recortar y Escanear</button>
+      </div>
+    </div>
+  </div>
+    <script src="/resources/js/scanner.js"></script>
+</body>
+</html>
