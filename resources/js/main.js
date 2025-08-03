@@ -3,15 +3,7 @@
   const langCode = userLang.toLowerCase();
 
   const langMap = {
-    'en': 'en/',
-    'pt': 'pt/',
-    'fr': 'fr/',
-    'ja': 'ja/',
-    'zh': 'zh/',
-    'de': 'de/',
-    'nl': 'nl/',
-    'it': 'it/',
-    'ar': 'ar/'
+  'en': 'en/'
   };
 
   if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
