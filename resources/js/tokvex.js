@@ -6,7 +6,7 @@ let fileName = '';
 function generarNombreArchivo(tipo) {
     const randomNum = Math.floor(Math.random() * 1000000);
     const fecha = Date.now();
-    const prefijo = tipo === 'video' ? 'bytesdex_video_' : 'bytesdex_imagen_';
+    const prefijo = tipo === 'video' ? 'orvex_video_' : 'orvex_imagen_';
     return `${prefijo}${randomNum}_${fecha}${tipo === 'video' ? '.mp4' : '.jpg'}`;
 }
 
